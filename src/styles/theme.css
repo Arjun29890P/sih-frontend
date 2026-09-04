@@ -1,0 +1,183 @@
+
+:root {
+
+  --ner-forest-deep: #132E22;     
+  --ner-forest: #1A4031;          
+  --ner-forest-light: #2A5A46;
+  --ner-teal-deep: #184E55;       
+  --ner-teal: #236B73;            
+  --ner-teal-light: #E6F3F4;
+  --ner-muga-gold: #C98A2C;       
+  --ner-muga-light: #F7EBD2;
+  --ner-terracotta: #C45532;      
+  --ner-terracotta-light: #FBECE7;
+
+  --bg-primary: #F8F6EE;          
+  --bg-secondary: #FFFFFF;
+  --bg-card: #FFFFFF;
+  --bg-elevated: #F1EFE6;
+  --bg-accent: #EBF3EE;
+
+  --text-primary: #15241C;        
+  --text-secondary: #3D5245;      
+  --text-muted: #5E7568;
+  --text-inverse: #FFFFFF;
+
+  --state-success: #1E7E34;
+  --state-success-bg: #E8F5E9;
+  --state-warning: #B26A00;
+  --state-warning-bg: #FFF3E0;
+  --state-danger: #C62828;
+  --state-danger-bg: #FFEBEE;
+  --state-info: #0D47A1;
+  --state-info-bg: #E3F2FD;
+
+  --min-touch-size: 60px;
+  --border-radius-sm: 12px;
+  --border-radius-md: 20px;
+  --border-radius-lg: 32px;
+  --border-radius-full: 9999px;
+
+  --shadow-soft: 0 4px 16px rgba(19, 46, 34, 0.08);
+  --shadow-medium: 0 8px 28px rgba(19, 46, 34, 0.12);
+  --shadow-prominent: 0 16px 40px rgba(19, 46, 34, 0.16);
+  --shadow-button: 0 6px 0 rgba(19, 46, 34, 0.2);
+
+  --font-scale: 1;
+  --font-base: calc(18px * var(--font-scale));
+  --font-title: calc(26px * var(--font-scale));
+  --font-hero: calc(34px * var(--font-scale));
+  --font-btn: calc(20px * var(--font-scale));
+
+  --transition-gentle: all 0.25s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+body.high-contrast {
+
+  --ner-forest-deep: #4ADE80;
+  --ner-forest: #22C55E;
+  --ner-forest-light: #86EFAC;
+  --ner-teal-deep: #0284C7;
+  --ner-teal: #38BDF8;
+  --ner-teal-light: #164E63;
+  --ner-muga-gold: #FBBF24;
+  --ner-muga-light: #451A03;
+  --ner-terracotta: #FB7185;
+  --ner-terracotta-light: #4C0519;
+
+  --bg-primary: #0D1411;
+  --bg-secondary: #141E1A;
+  --bg-card: #1A2621;
+  --bg-elevated: #23322C;
+  --bg-accent: #2C3E37;
+
+  --text-primary: #F8FAFC;
+  --text-secondary: #CBD5E1;
+  --text-muted: #94A3B8;
+  --text-inverse: #0D1411;
+
+  --state-success: #4ADE80;
+  --state-success-bg: rgba(34, 197, 94, 0.15);
+  --state-warning: #FBBF24;
+  --state-warning-bg: rgba(245, 158, 11, 0.15);
+  --state-danger: #F87171;
+  --state-danger-bg: rgba(239, 68, 68, 0.15);
+  --state-info: #60A5FA;
+  --state-info-bg: rgba(59, 130, 246, 0.15);
+
+  --shadow-soft: 0 4px 20px rgba(0, 0, 0, 0.5);
+  --shadow-medium: 0 8px 30px rgba(0, 0, 0, 0.6);
+  --shadow-prominent: 0 16px 40px rgba(0, 0, 0, 0.7);
+}
+
+body.high-contrast .top-header {
+  background: var(--bg-secondary);
+  border-bottom: 2px solid rgba(255, 255, 255, 0.1);
+}
+
+body.high-contrast .day-orientation-banner {
+  background: linear-gradient(135deg, #16221D, #1C2B24);
+  border-bottom: 2px dashed rgba(255, 255, 255, 0.15);
+}
+
+body.high-contrast .pill-select,
+body.high-contrast .pill-btn {
+  background: var(--bg-elevated);
+  border-color: rgba(255, 255, 255, 0.18);
+  color: var(--text-primary);
+}
+
+body.high-contrast .pill-btn.active {
+  background: var(--ner-forest);
+  color: #0D1411;
+  font-weight: 800;
+}
+
+body.high-contrast .elder-nav-card {
+  background: var(--bg-card);
+  border-color: rgba(255, 255, 255, 0.12);
+  color: var(--text-primary);
+}
+
+body.high-contrast .game-card,
+body.high-contrast .card-tactile {
+  background: var(--bg-card);
+  border-color: rgba(255, 255, 255, 0.12);
+}
+
+body.high-contrast input,
+body.high-contrast select,
+body.high-contrast textarea {
+  background: var(--bg-elevated);
+  color: var(--text-primary);
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+body.high-contrast footer {
+  background: var(--bg-secondary) !important;
+  border-top-color: rgba(255, 255, 255, 0.1) !important;
+}
+
+body.calm-mode {
+  --bg-primary: #F2EFE9;
+  --ner-forest: #2C423B;
+  --ner-teal: #365352;
+  --ner-muga-gold: #A67C38;
+  --shadow-prominent: 0 8px 24px rgba(0,0,0,0.06);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  -webkit-tap-highlight-color: transparent;
+}
+
+html, body {
+  width: 100%;
+  min-height: 100vh;
+  font-family: 'Outfit', 'Noto Sans Bengali', 'Noto Sans', system-ui, -apple-system, sans-serif;
+  font-size: var(--font-base);
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  line-height: 1.5;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+button {
+  font-family: inherit;
+  border: none;
+  background: none;
+  cursor: pointer;
+  user-select: none;
+}
+
+input, select, textarea {
+  font-family: inherit;
+}
+
+button:focus-visible, a:focus-visible, input:focus-visible {
+  outline: 4px solid var(--ner-muga-gold);
+  outline-offset: 3px;
+}
