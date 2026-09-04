@@ -153,7 +153,7 @@ export default function VoiceCompanionModal({ onClose }) {
               }}>
                 <Volume2 color="var(--state-success)" size={26} style={{ flexShrink: 0, marginTop: 2 }} />
                 <div>
-                  <strong>Aai:</strong> {companionReply}
+                  <strong>AI:</strong> {companionReply}
                 </div>
               </div>
             )}

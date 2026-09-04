@@ -39,7 +39,7 @@ export const translations = {
     tabHydration: 'Water Intake',
     tabMusic: 'Music & Peace',
     tabSOS: 'Emergency SOS',
-    tabCompanion: 'Aai Companion',
+    tabCompanion: 'AI Companion',
 
     gamesTitle: 'Joyful Mind Exercises',
     gamesSub: 'Gentle, enjoyable activities to keep your memory glowing',
@@ -89,7 +89,7 @@ export const translations = {
     sosReassurance: 'Help is on the way. Please sit down comfortably. You are safe.',
     sosCancel: 'Cancel Alert (I am safe)',
 
-    companionTitle: 'Aai - Your Voice Friend',
+    companionTitle: 'AI - Your Voice Friend',
     companionSubtitle: 'Speak with me, listen to a story, or ask what time it is',
     companionListening: 'Listening to your voice...',
     companionTapToSpeak: 'Tap to Talk to Aai',
