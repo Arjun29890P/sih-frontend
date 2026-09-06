@@ -7,20 +7,11 @@ export default function LoginPage({ onLogin }) {
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState('');
   const [focusedField, setFocusedField] = useState(null);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setError('');
-
-    if (!email.trim() || !password.trim()) {
-      setError('Please fill in both your email and password to continue.');
-      return;
-    }
-
-    if (!/^\S+@\S+\.\S+$/.test(email.trim())) {
-      setError('Please enter a valid email address.');
+    if (!email.trim() || !password.trim() || !/^\S+@\S+\.\S+$/.test(email.trim())) {
       return;
     }
 
@@ -135,15 +126,6 @@ export default function LoginPage({ onLogin }) {
                 {showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
               </button>
             </div>
-          </div>
-
-          {/* Error */}
-          <div className={`login-error-slot ${error ? 'has-error' : ''}`} aria-live="polite">
-            {error && (
-              <div className="login-error" role="alert">
-                <span aria-hidden="true">!</span> {error}
-              </div>
-            )}
           </div>
 
           {/* Submit */}
@@ -365,13 +347,6 @@ export default function LoginPage({ onLogin }) {
           display: flex;
           flex-direction: column;
           gap: 20px;
-        }
-        .login-error-slot {
-          min-height: 0;
-          transition: min-height 0.2s ease;
-        }
-        .login-error-slot.has-error {
-          min-height: 52px;
         }
         .login-field {
           display: flex;
