@@ -12,11 +12,12 @@
   --ner-terracotta: #C45532;      
   --ner-terracotta-light: #FBECE7;
 
-  --bg-primary: #F8F6EE;          
+  --bg-primary: #F5F8F5;
   --bg-secondary: #FFFFFF;
   --bg-card: #FFFFFF;
-  --bg-elevated: #F1EFE6;
-  --bg-accent: #EBF3EE;
+  --bg-elevated: #EDF4EF;
+  --bg-accent: #E2F0E7;
+  --border-subtle: rgba(26, 64, 49, 0.12);
 
   --text-primary: #15241C;        
   --text-secondary: #3D5245;      
