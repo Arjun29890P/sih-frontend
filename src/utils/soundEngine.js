@@ -3,6 +3,7 @@ class SoundEngine {
   constructor() {
     this.ctx = null;
     this.muted = false;
+    this.activeNodes = [];
   }
 
   init() {
@@ -108,6 +109,78 @@ class SoundEngine {
     } catch (e) {
       console.warn('Audio flute error:', e);
     }
+  }
+
+  stopSoundscape() {
+    this.activeNodes.forEach(node => {
+      try { node.stop(); } catch (e) {}
+      try { node.disconnect(); } catch (e) {}
+    });
+    this.activeNodes = [];
+  }
+
+  playSoundscape(kind) {
+    if (this.muted) return;
+    this.init();
+    if (!this.ctx) return;
+    this.stopSoundscape();
+    const now = this.ctx.currentTime;
+
+    if (kind === 'flute') {
+      const notes = [440, 523.25, 587.33, 659.25, 587.33, 523.25];
+      notes.forEach((frequency, index) => {
+        const oscillator = this.ctx.createOscillator();
+        const gain = this.ctx.createGain();
+        const start = now + index * 1.35;
+        oscillator.type = 'sine';
+        oscillator.frequency.setValueAtTime(frequency, start);
+        gain.gain.setValueAtTime(0.001, start);
+        gain.gain.linearRampToValueAtTime(0.16, start + 0.18);
+        gain.gain.exponentialRampToValueAtTime(0.001, start + 1.2);
+        oscillator.connect(gain).connect(this.ctx.destination);
+        oscillator.start(start);
+        oscillator.stop(start + 1.25);
+        this.activeNodes.push(oscillator);
+      });
+      return;
+    }
+
+    if (kind === 'bowl') {
+      [196, 293.66, 392].forEach((frequency, index) => {
+        const oscillator = this.ctx.createOscillator();
+        const gain = this.ctx.createGain();
+        oscillator.type = 'sine';
+        oscillator.frequency.value = frequency;
+        gain.gain.setValueAtTime(0.001, now);
+        gain.gain.exponentialRampToValueAtTime(0.22 / (index + 1), now + 0.08);
+        gain.gain.exponentialRampToValueAtTime(0.001, now + 7);
+        oscillator.connect(gain).connect(this.ctx.destination);
+        oscillator.start(now);
+        oscillator.stop(now + 7.1);
+        this.activeNodes.push(oscillator);
+      });
+      return;
+    }
+
+    const buffer = this.ctx.createBuffer(1, this.ctx.sampleRate * 3, this.ctx.sampleRate);
+    const data = buffer.getChannelData(0);
+    let last = 0;
+    for (let i = 0; i < data.length; i += 1) {
+      const noise = Math.random() * 2 - 1;
+      last = last * 0.96 + noise * 0.04;
+      data[i] = last;
+    }
+    const source = this.ctx.createBufferSource();
+    const filter = this.ctx.createBiquadFilter();
+    const gain = this.ctx.createGain();
+    source.buffer = buffer;
+    source.loop = true;
+    filter.type = kind === 'rain' ? 'highpass' : 'lowpass';
+    filter.frequency.value = kind === 'rain' ? 900 : 700;
+    gain.gain.value = kind === 'rain' ? 0.16 : 0.2;
+    source.connect(filter).connect(gain).connect(this.ctx.destination);
+    source.start();
+    this.activeNodes.push(source);
   }
 
   playWaterChime() {

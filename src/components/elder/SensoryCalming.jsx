@@ -17,40 +17,28 @@ export default function SensoryCalming() {
       title: t('fluteTrack'),
       desc: 'Gentle bamboo flute melodies inspired by the green Khasi pine ridges',
       icon: '🎋',
-      playTone: () => {
-        soundEngine.playFluteTone(440, 1.2);
-        setTimeout(() => soundEngine.playFluteTone(523.25, 1.2), 1200);
-        setTimeout(() => soundEngine.playFluteTone(587.33, 1.5), 2400);
-      }
+      playTone: () => soundEngine.playSoundscape('flute')
     },
     {
       id: 'rain',
       title: t('rainTrack'),
       desc: 'Soft rhythmic raindrops trickling on broad banana leaves in Cherrapunji',
       icon: '🌧️',
-      playTone: () => {
-        soundEngine.playFluteTone(330, 0.8);
-        setTimeout(() => soundEngine.playFluteTone(392, 0.8), 800);
-      }
+      playTone: () => soundEngine.playSoundscape('rain')
     },
     {
       id: 'river',
       title: t('riverTrack'),
       desc: 'Rippling calm waters of the mighty Brahmaputra at quiet sunset',
       icon: '🌊',
-      playTone: () => {
-        soundEngine.playFluteTone(261.63, 1.4);
-        setTimeout(() => soundEngine.playFluteTone(329.63, 1.4), 1400);
-      }
+      playTone: () => soundEngine.playSoundscape('river')
     },
     {
       id: 'bowl',
       title: t('singingBowlTrack'),
       desc: 'Deep resonant Tibetan monastic singing bowl for grounding and serenity',
       icon: '🧘',
-      playTone: () => {
-        soundEngine.playSuccess();
-      }
+      playTone: () => soundEngine.playSoundscape('bowl')
     }
   ];
 
@@ -63,8 +51,10 @@ export default function SensoryCalming() {
 
   const handleToggleTrack = (track) => {
     if (playingTrack === track.id) {
+      soundEngine.stopSoundscape();
       setPlayingTrack(null);
     } else {
+      soundEngine.stopSoundscape();
       setPlayingTrack(track.id);
       track.playTone();
       voiceAssistant.speak(`Playing ${track.title}. Let your heart feel calm and peaceful.`, currentLang);
