@@ -19,6 +19,11 @@ export default function LoginPage({ onLogin }) {
       return;
     }
 
+    if (!/^\S+@\S+\.\S+$/.test(email.trim())) {
+      setError('Please enter a valid email address.');
+      return;
+    }
+
     setIsLoading(true);
     await new Promise((r) => setTimeout(r, 1200));
     onLogin({ email: email.trim(), role });
@@ -74,7 +79,7 @@ export default function LoginPage({ onLogin }) {
         </div>
 
         {/* Form */}
-        <form onSubmit={handleSubmit} className="login-form">
+        <form onSubmit={handleSubmit} className="login-form" noValidate>
           {/* Email */}
           <div className="login-field">
             <label
@@ -133,11 +138,13 @@ export default function LoginPage({ onLogin }) {
           </div>
 
           {/* Error */}
-          {error && (
-            <div className="login-error">
-              <span>⚠️</span> {error}
-            </div>
-          )}
+          <div className={`login-error-slot ${error ? 'has-error' : ''}`} aria-live="polite">
+            {error && (
+              <div className="login-error" role="alert">
+                <span aria-hidden="true">!</span> {error}
+              </div>
+            )}
+          </div>
 
           {/* Submit */}
           <button
@@ -183,14 +190,14 @@ export default function LoginPage({ onLogin }) {
 
       <style>{`
         .login-page-wrapper {
-          position: fixed;
-          inset: 0;
+          position: relative;
+          min-height: 100dvh;
           display: flex;
           align-items: center;
           justify-content: center;
           flex-direction: column;
           background: linear-gradient(160deg, #F8F6EE 0%, #EBF3EE 40%, #F7EBD2 100%);
-          overflow: hidden;
+          overflow: auto;
           font-family: 'Outfit', 'Noto Sans Bengali', 'Noto Sans', system-ui, sans-serif;
           z-index: 10000;
           padding: 20px;
@@ -358,6 +365,13 @@ export default function LoginPage({ onLogin }) {
           display: flex;
           flex-direction: column;
           gap: 20px;
+        }
+        .login-error-slot {
+          min-height: 0;
+          transition: min-height 0.2s ease;
+        }
+        .login-error-slot.has-error {
+          min-height: 52px;
         }
         .login-field {
           display: flex;
@@ -533,8 +547,9 @@ export default function LoginPage({ onLogin }) {
 
         /* Bottom attribution */
         .login-bottom-attrib {
-          position: absolute;
-          bottom: 20px;
+          position: relative;
+          margin-top: 16px;
+          padding-bottom: 4px;
           text-align: center;
           font-size: 0.8em;
           color: #5E7568;
