@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Eye, EyeOff, LogIn, Shield, Heart, Leaf } from 'lucide-react';
+import { Eye, EyeOff, LogIn, Shield, Heart, Leaf, Mail, Lock, ArrowRight } from 'lucide-react';
 
 export default function LoginPage({ onLogin }) {
   const [role, setRole] = useState('elder');
@@ -15,106 +15,76 @@ export default function LoginPage({ onLogin }) {
     setError('');
 
     if (!email.trim() || !password.trim()) {
-      setError('Please fill in all fields.');
+      setError('Please fill in both your email and password to continue.');
       return;
     }
 
     setIsLoading(true);
-
-    // Simulate authentication delay
     await new Promise((r) => setTimeout(r, 1200));
-
-    // For demo: accept any credentials
     onLogin({ email: email.trim(), role });
   };
 
   return (
-    <div style={styles.wrapper}>
-      {/* Animated Background */}
-      <div style={styles.bgLayer}>
-        <div style={styles.gradientOrb1} />
-        <div style={styles.gradientOrb2} />
-        <div style={styles.gradientOrb3} />
+    <div className="login-page-wrapper">
+      {/* Soft decorative background */}
+      <div className="login-bg-decor">
+        <div className="login-orb login-orb-1" />
+        <div className="login-orb login-orb-2" />
+        <div className="login-orb login-orb-3" />
       </div>
 
-      {/* Floating Decorative Elements */}
-      <div style={styles.floatingLeaf1}><Leaf size={20} /></div>
-      <div style={styles.floatingLeaf2}><Leaf size={16} /></div>
-      <div style={styles.floatingLeaf3}><Leaf size={24} /></div>
+      {/* Floating leaves */}
+      <div className="login-leaf login-leaf-1"><Leaf size={22} /></div>
+      <div className="login-leaf login-leaf-2"><Leaf size={16} /></div>
+      <div className="login-leaf login-leaf-3"><Leaf size={28} /></div>
 
-      {/* Login Card */}
-      <div style={styles.card}>
-        {/* Brand Header */}
-        <div style={styles.brandHeader}>
-          <div style={styles.logoContainer}>
-            <span style={styles.logoEmoji}>🌿</span>
-          </div>
-          <h1 style={styles.brandTitle}>Aeterna NER</h1>
-          <p style={styles.brandSubtitle}>
+      {/* Login card */}
+      <div className="login-card">
+        {/* Brand header */}
+        <div className="login-brand">
+          <div className="login-logo-badge">🌿</div>
+          <h1 className="login-brand-title">Aeterna NER</h1>
+          <p className="login-brand-subtitle">
             AI-Enabled Cognitive & Dementia Care Platform
           </p>
-          <div style={styles.mdoTag}>
-            <Shield size={12} />
+          <div className="login-mdo-tag">
+            <Shield size={13} />
             <span>Ministry of DoNER • SIH26003</span>
           </div>
         </div>
 
-        {/* Role Selector */}
-        <div style={styles.roleSelector}>
+        {/* Role selector */}
+        <div className="login-role-selector">
           <button
             type="button"
-            style={{
-              ...styles.roleBtn,
-              ...(role === 'elder' ? styles.roleBtnActive : {}),
-            }}
+            className={`login-role-btn ${role === 'elder' ? 'active elder' : ''}`}
             onClick={() => setRole('elder')}
           >
-            <Heart
-              size={18}
-              style={{
-                color: role === 'elder' ? '#fff' : 'var(--ner-terracotta)',
-              }}
-            />
+            <Heart size={20} />
             <span>Elder</span>
           </button>
           <button
             type="button"
-            style={{
-              ...styles.roleBtn,
-              ...(role === 'caregiver' ? styles.roleBtnActiveCaregiver : {}),
-            }}
+            className={`login-role-btn ${role === 'caregiver' ? 'active caregiver' : ''}`}
             onClick={() => setRole('caregiver')}
           >
-            <Shield
-              size={18}
-              style={{
-                color:
-                  role === 'caregiver' ? '#fff' : 'var(--ner-teal)',
-              }}
-            />
+            <Shield size={20} />
             <span>Caregiver</span>
           </button>
         </div>
 
         {/* Form */}
-        <form onSubmit={handleSubmit} style={styles.form}>
-          {/* Email Field */}
-          <div style={styles.fieldGroup}>
+        <form onSubmit={handleSubmit} className="login-form">
+          {/* Email */}
+          <div className="login-field">
             <label
               htmlFor="login-email"
-              style={{
-                ...styles.label,
-                ...(focusedField === 'email' ? styles.labelFocused : {}),
-              }}
+              className={`login-label ${focusedField === 'email' ? 'focused' : ''}`}
             >
               Email Address
             </label>
-            <div
-              style={{
-                ...styles.inputWrapper,
-                ...(focusedField === 'email' ? styles.inputWrapperFocused : {}),
-              }}
-            >
+            <div className={`login-input-wrapper ${focusedField === 'email' ? 'focused' : ''}`}>
+              <Mail size={20} className="login-input-icon" />
               <input
                 id="login-email"
                 type="email"
@@ -123,31 +93,22 @@ export default function LoginPage({ onLogin }) {
                 onFocus={() => setFocusedField('email')}
                 onBlur={() => setFocusedField(null)}
                 placeholder="your@email.com"
-                style={styles.input}
+                className="login-input"
                 autoComplete="email"
               />
             </div>
           </div>
 
-          {/* Password Field */}
-          <div style={styles.fieldGroup}>
+          {/* Password */}
+          <div className="login-field">
             <label
               htmlFor="login-password"
-              style={{
-                ...styles.label,
-                ...(focusedField === 'password' ? styles.labelFocused : {}),
-              }}
+              className={`login-label ${focusedField === 'password' ? 'focused' : ''}`}
             >
               Password
             </label>
-            <div
-              style={{
-                ...styles.inputWrapper,
-                ...(focusedField === 'password'
-                  ? styles.inputWrapperFocused
-                  : {}),
-              }}
-            >
+            <div className={`login-input-wrapper ${focusedField === 'password' ? 'focused' : ''}`}>
+              <Lock size={20} className="login-input-icon" />
               <input
                 id="login-password"
                 type={showPassword ? 'text' : 'password'}
@@ -156,28 +117,24 @@ export default function LoginPage({ onLogin }) {
                 onFocus={() => setFocusedField('password')}
                 onBlur={() => setFocusedField(null)}
                 placeholder="Enter your password"
-                style={styles.input}
+                className="login-input"
                 autoComplete="current-password"
               />
               <button
                 type="button"
                 onClick={() => setShowPassword(!showPassword)}
-                style={styles.eyeBtn}
+                className="login-eye-btn"
                 tabIndex={-1}
                 aria-label={showPassword ? 'Hide password' : 'Show password'}
               >
-                {showPassword ? (
-                  <EyeOff size={18} color="var(--text-muted)" />
-                ) : (
-                  <Eye size={18} color="var(--text-muted)" />
-                )}
+                {showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
               </button>
             </div>
           </div>
 
-          {/* Error Message */}
+          {/* Error */}
           {error && (
-            <div style={styles.errorBox}>
+            <div className="login-error">
               <span>⚠️</span> {error}
             </div>
           )}
@@ -186,54 +143,416 @@ export default function LoginPage({ onLogin }) {
           <button
             type="submit"
             disabled={isLoading}
-            style={{
-              ...styles.submitBtn,
-              ...(role === 'caregiver'
-                ? styles.submitBtnCaregiver
-                : styles.submitBtnElder),
-              ...(isLoading ? styles.submitBtnLoading : {}),
-            }}
+            className={`login-submit-btn ${role} ${isLoading ? 'loading' : ''}`}
           >
             {isLoading ? (
-              <div style={styles.spinner} />
+              <div className="login-spinner" />
             ) : (
               <>
-                <LogIn size={20} />
-                <span>
-                  Sign In as{' '}
-                  {role === 'elder' ? 'Elder' : 'Caregiver'}
-                </span>
+                <LogIn size={22} />
+                <span>Sign In as {role === 'elder' ? 'Elder' : 'Caregiver'}</span>
+                <ArrowRight size={20} style={{ marginLeft: 'auto' }} />
               </>
             )}
           </button>
         </form>
 
-        {/* Footer Links */}
-        <div style={styles.footerLinks}>
-          <button type="button" style={styles.linkBtn}>
+        {/* Footer links */}
+        <div className="login-footer-links">
+          <button type="button" className="login-link-btn">
             Forgot Password?
           </button>
-          <span style={styles.dividerDot}>•</span>
-          <button type="button" style={styles.linkBtn}>
+          <span className="login-divider">•</span>
+          <button type="button" className="login-link-btn">
             Register Account
           </button>
         </div>
 
-        {/* Trust Badges */}
-        <div style={styles.trustBadges}>
-          <span style={styles.badge}>🔒 256-bit Encrypted</span>
-          <span style={styles.badge}>🏔️ Offline Capable</span>
-          <span style={styles.badge}>🏥 HIPAA Compliant</span>
+        {/* Trust badges */}
+        <div className="login-trust-badges">
+          <span className="login-badge">🔒 256-bit Encrypted</span>
+          <span className="login-badge">🏔️ Offline Capable</span>
+          <span className="login-badge">🏥 HIPAA Compliant</span>
         </div>
       </div>
 
-      {/* Bottom Attribution */}
-      <div style={styles.bottomAttrib}>
+      {/* Bottom attribution */}
+      <div className="login-bottom-attrib">
         Developed for North Eastern Region • India 🇮🇳
       </div>
 
-      {/* Inline Keyframe Animations */}
       <style>{`
+        .login-page-wrapper {
+          position: fixed;
+          inset: 0;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          flex-direction: column;
+          background: linear-gradient(160deg, #F8F6EE 0%, #EBF3EE 40%, #F7EBD2 100%);
+          overflow: hidden;
+          font-family: 'Outfit', 'Noto Sans Bengali', 'Noto Sans', system-ui, sans-serif;
+          z-index: 10000;
+          padding: 20px;
+        }
+
+        /* Decorative orbs */
+        .login-bg-decor {
+          position: absolute;
+          inset: 0;
+          overflow: hidden;
+          pointer-events: none;
+        }
+        .login-orb {
+          position: absolute;
+          border-radius: 50%;
+          filter: blur(70px);
+        }
+        .login-orb-1 {
+          top: 8%;
+          left: 10%;
+          width: 360px;
+          height: 360px;
+          background: radial-gradient(circle, rgba(26, 64, 49, 0.12) 0%, transparent 70%);
+          animation: loginOrbFloat1 14s ease-in-out infinite;
+        }
+        .login-orb-2 {
+          bottom: 10%;
+          right: 8%;
+          width: 420px;
+          height: 420px;
+          background: radial-gradient(circle, rgba(35, 107, 115, 0.12) 0%, transparent 70%);
+          animation: loginOrbFloat2 17s ease-in-out infinite;
+        }
+        .login-orb-3 {
+          top: 45%;
+          left: 55%;
+          width: 280px;
+          height: 280px;
+          background: radial-gradient(circle, rgba(201, 138, 44, 0.1) 0%, transparent 70%);
+          animation: loginOrbFloat3 11s ease-in-out infinite;
+        }
+
+        /* Floating leaves */
+        .login-leaf {
+          position: absolute;
+          pointer-events: none;
+        }
+        .login-leaf-1 {
+          top: 18%;
+          right: 20%;
+          color: rgba(26, 64, 49, 0.15);
+          animation: loginLeafDrift1 9s ease-in-out infinite;
+        }
+        .login-leaf-2 {
+          bottom: 22%;
+          left: 16%;
+          color: rgba(35, 107, 115, 0.12);
+          animation: loginLeafDrift2 11s ease-in-out infinite;
+        }
+        .login-leaf-3 {
+          top: 55%;
+          right: 10%;
+          color: rgba(201, 138, 44, 0.15);
+          animation: loginLeafDrift3 10s ease-in-out infinite;
+        }
+
+        /* Card */
+        .login-card {
+          position: relative;
+          width: 100%;
+          max-width: 460px;
+          padding: 40px 36px 32px;
+          background: #FFFFFF;
+          border-radius: 32px;
+          border: 2px solid rgba(26, 64, 49, 0.1);
+          box-shadow: 0 16px 40px rgba(19, 46, 34, 0.12);
+          animation: loginCardEntry 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+
+        /* Brand */
+        .login-brand {
+          text-align: center;
+          margin-bottom: 28px;
+        }
+        .login-logo-badge {
+          width: 72px;
+          height: 72px;
+          border-radius: 20px;
+          background: linear-gradient(135deg, #1A4031, #236B73);
+          color: #FFFFFF;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          font-size: 34px;
+          margin: 0 auto 14px;
+          box-shadow: 0 8px 24px rgba(26, 64, 49, 0.25);
+        }
+        .login-brand-title {
+          font-size: 1.75em;
+          font-weight: 800;
+          color: #132E22;
+          margin: 0 0 4px;
+          letter-spacing: -0.02em;
+        }
+        .login-brand-subtitle {
+          font-size: 0.88em;
+          color: #5E7568;
+          margin: 0 0 12px;
+          font-weight: 500;
+        }
+        .login-mdo-tag {
+          display: inline-flex;
+          align-items: center;
+          gap: 6px;
+          font-size: 0.72em;
+          color: #236B73;
+          background: #E6F3F4;
+          padding: 5px 14px;
+          border-radius: 9999px;
+          font-weight: 700;
+        }
+
+        /* Role selector */
+        .login-role-selector {
+          display: flex;
+          gap: 8px;
+          margin-bottom: 24px;
+          background: #F1EFE6;
+          border-radius: 20px;
+          padding: 5px;
+        }
+        .login-role-btn {
+          flex: 1;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: 8px;
+          padding: 14px 16px;
+          border-radius: 14px;
+          border: none;
+          background: transparent;
+          color: #5E7568;
+          font-size: 1em;
+          font-weight: 700;
+          cursor: pointer;
+          transition: all 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+          font-family: inherit;
+          min-height: 52px;
+        }
+        .login-role-btn.active {
+          color: #FFFFFF;
+          transform: translateY(-1px);
+        }
+        .login-role-btn.active.elder {
+          background: linear-gradient(135deg, #C45532, #D4724A);
+          box-shadow: 0 6px 18px rgba(196, 85, 50, 0.3);
+        }
+        .login-role-btn.active.caregiver {
+          background: linear-gradient(135deg, #1A4031, #236B73);
+          box-shadow: 0 6px 18px rgba(35, 107, 115, 0.3);
+        }
+
+        /* Form */
+        .login-form {
+          display: flex;
+          flex-direction: column;
+          gap: 20px;
+        }
+        .login-field {
+          display: flex;
+          flex-direction: column;
+          gap: 7px;
+        }
+        .login-label {
+          font-size: 0.88em;
+          font-weight: 700;
+          color: #3D5245;
+          text-transform: uppercase;
+          letter-spacing: 0.05em;
+          transition: color 0.2s ease;
+        }
+        .login-label.focused {
+          color: #C98A2C;
+        }
+        .login-input-wrapper {
+          position: relative;
+          display: flex;
+          align-items: center;
+          background: #F8F6EE;
+          border-radius: 16px;
+          border: 2px solid rgba(26, 64, 49, 0.12);
+          transition: all 0.25s ease;
+        }
+        .login-input-wrapper.focused {
+          border-color: #C98A2C;
+          box-shadow: 0 0 0 4px rgba(201, 138, 44, 0.12);
+          background: #FFFFFF;
+        }
+        .login-input-icon {
+          color: #5E7568;
+          margin-left: 16px;
+          flex-shrink: 0;
+        }
+        .login-input-wrapper.focused .login-input-icon {
+          color: #C98A2C;
+        }
+        .login-input {
+          flex: 1;
+          padding: 16px 12px 16px 12px;
+          background: transparent;
+          border: none;
+          outline: none;
+          color: #15241C;
+          font-size: 1.05em;
+          font-family: inherit;
+          font-weight: 500;
+        }
+        .login-input::placeholder {
+          color: #9AAEA0;
+        }
+        .login-eye-btn {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          padding: 0 16px;
+          background: transparent;
+          border: none;
+          cursor: pointer;
+          height: 100%;
+          color: #5E7568;
+        }
+        .login-eye-btn:hover {
+          color: #236B73;
+        }
+
+        /* Error */
+        .login-error {
+          display: flex;
+          align-items: center;
+          gap: 8px;
+          padding: 12px 16px;
+          background: #FBECE7;
+          border: 2px solid rgba(196, 85, 50, 0.3);
+          border-radius: 14px;
+          color: #C45532;
+          font-size: 0.92em;
+          font-weight: 600;
+        }
+
+        /* Submit */
+        .login-submit-btn {
+          display: flex;
+          align-items: center;
+          justify-content: flex-start;
+          gap: 10px;
+          padding: 16px 24px;
+          border-radius: 20px;
+          border: none;
+          font-size: 1.1em;
+          font-weight: 800;
+          color: #FFFFFF;
+          cursor: pointer;
+          transition: all 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+          font-family: inherit;
+          margin-top: 4px;
+          min-height: 60px;
+          box-shadow: 0 8px 24px rgba(26, 64, 49, 0.2);
+        }
+        .login-submit-btn.elder {
+          background: linear-gradient(135deg, #C45532, #D4724A);
+          box-shadow: 0 8px 24px rgba(196, 85, 50, 0.3);
+        }
+        .login-submit-btn.caregiver {
+          background: linear-gradient(135deg, #1A4031, #236B73);
+          box-shadow: 0 8px 24px rgba(35, 107, 115, 0.3);
+        }
+        .login-submit-btn:hover {
+          transform: translateY(-2px);
+          filter: brightness(1.05);
+        }
+        .login-submit-btn:active {
+          transform: translateY(2px);
+        }
+        .login-submit-btn.loading {
+          opacity: 0.8;
+          pointer-events: none;
+          justify-content: center;
+        }
+        .login-spinner {
+          width: 24px;
+          height: 24px;
+          border: 3px solid rgba(255, 255, 255, 0.3);
+          border-top-color: #FFFFFF;
+          border-radius: 50%;
+          animation: loginSpin 0.7s linear infinite;
+        }
+
+        /* Footer links */
+        .login-footer-links {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: 12px;
+          margin-top: 22px;
+        }
+        .login-link-btn {
+          background: transparent;
+          border: none;
+          color: #236B73;
+          font-size: 0.88em;
+          font-weight: 700;
+          cursor: pointer;
+          font-family: inherit;
+          transition: color 0.2s;
+          padding: 0;
+        }
+        .login-link-btn:hover {
+          color: #C98A2C;
+        }
+        .login-divider {
+          color: rgba(26, 64, 49, 0.2);
+          font-size: 0.85em;
+        }
+
+        /* Trust badges */
+        .login-trust-badges {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: 16px;
+          margin-top: 20px;
+          flex-wrap: wrap;
+        }
+        .login-badge {
+          font-size: 0.72em;
+          color: #5E7568;
+          font-weight: 600;
+          letter-spacing: 0.02em;
+        }
+
+        /* Bottom attribution */
+        .login-bottom-attrib {
+          position: absolute;
+          bottom: 20px;
+          text-align: center;
+          font-size: 0.8em;
+          color: #5E7568;
+          font-weight: 500;
+        }
+
+        /* Responsive */
+        @media (max-width: 480px) {
+          .login-card {
+            padding: 32px 24px 24px;
+            border-radius: 24px;
+          }
+          .login-brand-title {
+            font-size: 1.5em;
+          }
+        }
+
+        /* Animations */
         @keyframes loginOrbFloat1 {
           0%, 100% { transform: translate(0, 0) scale(1); }
           33% { transform: translate(60px, -40px) scale(1.1); }
@@ -249,16 +568,16 @@ export default function LoginPage({ onLogin }) {
           50% { transform: translate(30px, 40px) scale(1.08); }
         }
         @keyframes loginLeafDrift1 {
-          0%, 100% { transform: translate(0, 0) rotate(0deg); opacity: 0.18; }
-          50% { transform: translate(15px, -20px) rotate(25deg); opacity: 0.3; }
+          0%, 100% { transform: translate(0, 0) rotate(0deg); opacity: 0.15; }
+          50% { transform: translate(15px, -20px) rotate(25deg); opacity: 0.25; }
         }
         @keyframes loginLeafDrift2 {
           0%, 100% { transform: translate(0, 0) rotate(0deg); opacity: 0.12; }
-          50% { transform: translate(-12px, 18px) rotate(-20deg); opacity: 0.25; }
+          50% { transform: translate(-12px, 18px) rotate(-20deg); opacity: 0.22; }
         }
         @keyframes loginLeafDrift3 {
           0%, 100% { transform: translate(0, 0) rotate(0deg); opacity: 0.15; }
-          50% { transform: translate(20px, 10px) rotate(15deg); opacity: 0.28; }
+          50% { transform: translate(20px, 10px) rotate(15deg); opacity: 0.25; }
         }
         @keyframes loginCardEntry {
           from { opacity: 0; transform: translateY(30px) scale(0.96); }
@@ -267,356 +586,7 @@ export default function LoginPage({ onLogin }) {
         @keyframes loginSpin {
           to { transform: rotate(360deg); }
         }
-        @keyframes loginPulseGlow {
-          0%, 100% { box-shadow: 0 0 30px rgba(26, 64, 49, 0.15); }
-          50% { box-shadow: 0 0 50px rgba(26, 64, 49, 0.25); }
-        }
       `}</style>
     </div>
   );
 }
-
-const styles = {
-  wrapper: {
-    position: 'fixed',
-    inset: 0,
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    flexDirection: 'column',
-    background: 'linear-gradient(145deg, #0D1F17 0%, #132E22 30%, #184E55 70%, #1A4031 100%)',
-    overflow: 'hidden',
-    fontFamily: "'Outfit', 'Noto Sans', system-ui, sans-serif",
-    zIndex: 10000,
-  },
-
-  // Background Orbs
-  bgLayer: {
-    position: 'absolute',
-    inset: 0,
-    overflow: 'hidden',
-    pointerEvents: 'none',
-  },
-  gradientOrb1: {
-    position: 'absolute',
-    top: '10%',
-    left: '15%',
-    width: 350,
-    height: 350,
-    borderRadius: '50%',
-    background: 'radial-gradient(circle, rgba(201, 138, 44, 0.25) 0%, transparent 70%)',
-    filter: 'blur(60px)',
-    animation: 'loginOrbFloat1 12s ease-in-out infinite',
-  },
-  gradientOrb2: {
-    position: 'absolute',
-    bottom: '15%',
-    right: '10%',
-    width: 400,
-    height: 400,
-    borderRadius: '50%',
-    background: 'radial-gradient(circle, rgba(35, 107, 115, 0.3) 0%, transparent 70%)',
-    filter: 'blur(60px)',
-    animation: 'loginOrbFloat2 15s ease-in-out infinite',
-  },
-  gradientOrb3: {
-    position: 'absolute',
-    top: '50%',
-    left: '60%',
-    width: 250,
-    height: 250,
-    borderRadius: '50%',
-    background: 'radial-gradient(circle, rgba(42, 90, 70, 0.25) 0%, transparent 70%)',
-    filter: 'blur(50px)',
-    animation: 'loginOrbFloat3 10s ease-in-out infinite',
-  },
-
-  // Floating Leaves
-  floatingLeaf1: {
-    position: 'absolute',
-    top: '20%',
-    right: '22%',
-    color: 'rgba(255,255,255,0.18)',
-    animation: 'loginLeafDrift1 8s ease-in-out infinite',
-    pointerEvents: 'none',
-  },
-  floatingLeaf2: {
-    position: 'absolute',
-    bottom: '25%',
-    left: '18%',
-    color: 'rgba(255,255,255,0.12)',
-    animation: 'loginLeafDrift2 10s ease-in-out infinite',
-    pointerEvents: 'none',
-  },
-  floatingLeaf3: {
-    position: 'absolute',
-    top: '60%',
-    right: '12%',
-    color: 'rgba(255,255,255,0.15)',
-    animation: 'loginLeafDrift3 9s ease-in-out infinite',
-    pointerEvents: 'none',
-  },
-
-  // Card
-  card: {
-    position: 'relative',
-    width: '100%',
-    maxWidth: 440,
-    padding: '40px 36px 32px',
-    background: 'rgba(255, 255, 255, 0.07)',
-    backdropFilter: 'blur(24px) saturate(1.4)',
-    WebkitBackdropFilter: 'blur(24px) saturate(1.4)',
-    borderRadius: 28,
-    border: '1px solid rgba(255, 255, 255, 0.12)',
-    animation: 'loginCardEntry 0.6s cubic-bezier(0.22, 1, 0.36, 1), loginPulseGlow 4s ease-in-out infinite',
-    margin: '0 20px',
-  },
-
-  // Brand
-  brandHeader: {
-    textAlign: 'center',
-    marginBottom: 28,
-  },
-  logoContainer: {
-    width: 68,
-    height: 68,
-    borderRadius: '50%',
-    background: 'linear-gradient(135deg, rgba(201, 138, 44, 0.3), rgba(42, 90, 70, 0.3))',
-    border: '2px solid rgba(255, 255, 255, 0.15)',
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    margin: '0 auto 14px',
-    boxShadow: '0 8px 32px rgba(0, 0, 0, 0.3)',
-  },
-  logoEmoji: {
-    fontSize: 32,
-    filter: 'drop-shadow(0 2px 4px rgba(0,0,0,0.3))',
-  },
-  brandTitle: {
-    fontSize: '1.7em',
-    fontWeight: 900,
-    color: '#FFFFFF',
-    margin: '0 0 4px',
-    letterSpacing: '-0.02em',
-    textShadow: '0 2px 8px rgba(0,0,0,0.3)',
-  },
-  brandSubtitle: {
-    fontSize: '0.82em',
-    color: 'rgba(255, 255, 255, 0.55)',
-    margin: '0 0 10px',
-    fontWeight: 500,
-  },
-  mdoTag: {
-    display: 'inline-flex',
-    alignItems: 'center',
-    gap: 5,
-    fontSize: '0.7em',
-    color: 'rgba(255, 255, 255, 0.45)',
-    background: 'rgba(255, 255, 255, 0.06)',
-    padding: '4px 12px',
-    borderRadius: 20,
-    fontWeight: 600,
-  },
-
-  // Role Selector
-  roleSelector: {
-    display: 'flex',
-    gap: 10,
-    marginBottom: 24,
-    background: 'rgba(0, 0, 0, 0.2)',
-    borderRadius: 16,
-    padding: 5,
-  },
-  roleBtn: {
-    flex: 1,
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    gap: 8,
-    padding: '12px 16px',
-    borderRadius: 12,
-    border: 'none',
-    background: 'transparent',
-    color: 'rgba(255, 255, 255, 0.6)',
-    fontSize: '0.95em',
-    fontWeight: 700,
-    cursor: 'pointer',
-    transition: 'all 0.3s cubic-bezier(0.22, 1, 0.36, 1)',
-    fontFamily: 'inherit',
-  },
-  roleBtnActive: {
-    background: 'linear-gradient(135deg, #C45532, #D4724A)',
-    color: '#FFFFFF',
-    boxShadow: '0 4px 16px rgba(196, 85, 50, 0.4)',
-  },
-  roleBtnActiveCaregiver: {
-    background: 'linear-gradient(135deg, #1A4031, #236B73)',
-    color: '#FFFFFF',
-    boxShadow: '0 4px 16px rgba(35, 107, 115, 0.4)',
-  },
-
-  // Form
-  form: {
-    display: 'flex',
-    flexDirection: 'column',
-    gap: 18,
-  },
-  fieldGroup: {
-    display: 'flex',
-    flexDirection: 'column',
-    gap: 6,
-  },
-  label: {
-    fontSize: '0.82em',
-    fontWeight: 700,
-    color: 'rgba(255, 255, 255, 0.55)',
-    textTransform: 'uppercase',
-    letterSpacing: '0.06em',
-    transition: 'color 0.2s ease',
-  },
-  labelFocused: {
-    color: 'rgba(201, 138, 44, 0.9)',
-  },
-  inputWrapper: {
-    position: 'relative',
-    display: 'flex',
-    alignItems: 'center',
-    background: 'rgba(0, 0, 0, 0.25)',
-    borderRadius: 14,
-    border: '1.5px solid rgba(255, 255, 255, 0.1)',
-    transition: 'all 0.25s ease',
-    overflow: 'hidden',
-  },
-  inputWrapperFocused: {
-    borderColor: 'rgba(201, 138, 44, 0.6)',
-    boxShadow: '0 0 0 3px rgba(201, 138, 44, 0.12)',
-    background: 'rgba(0, 0, 0, 0.3)',
-  },
-  input: {
-    flex: 1,
-    padding: '14px 16px',
-    background: 'transparent',
-    border: 'none',
-    outline: 'none',
-    color: '#FFFFFF',
-    fontSize: '1em',
-    fontFamily: 'inherit',
-    fontWeight: 500,
-  },
-  eyeBtn: {
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    padding: '0 14px',
-    background: 'transparent',
-    border: 'none',
-    cursor: 'pointer',
-    height: '100%',
-  },
-
-  // Error
-  errorBox: {
-    display: 'flex',
-    alignItems: 'center',
-    gap: 8,
-    padding: '10px 14px',
-    background: 'rgba(196, 85, 50, 0.15)',
-    border: '1px solid rgba(196, 85, 50, 0.3)',
-    borderRadius: 12,
-    color: '#F9A68C',
-    fontSize: '0.88em',
-    fontWeight: 600,
-  },
-
-  // Submit
-  submitBtn: {
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    gap: 10,
-    padding: '16px 24px',
-    borderRadius: 16,
-    border: 'none',
-    fontSize: '1.05em',
-    fontWeight: 800,
-    color: '#FFFFFF',
-    cursor: 'pointer',
-    transition: 'all 0.3s cubic-bezier(0.22, 1, 0.36, 1)',
-    fontFamily: 'inherit',
-    marginTop: 4,
-    position: 'relative',
-    overflow: 'hidden',
-    minHeight: 54,
-  },
-  submitBtnElder: {
-    background: 'linear-gradient(135deg, #C45532, #D4724A)',
-    boxShadow: '0 6px 24px rgba(196, 85, 50, 0.4), inset 0 1px 0 rgba(255,255,255,0.15)',
-  },
-  submitBtnCaregiver: {
-    background: 'linear-gradient(135deg, #1A4031, #236B73)',
-    boxShadow: '0 6px 24px rgba(35, 107, 115, 0.4), inset 0 1px 0 rgba(255,255,255,0.15)',
-  },
-  submitBtnLoading: {
-    opacity: 0.8,
-    pointerEvents: 'none',
-  },
-  spinner: {
-    width: 22,
-    height: 22,
-    border: '3px solid rgba(255,255,255,0.25)',
-    borderTopColor: '#FFFFFF',
-    borderRadius: '50%',
-    animation: 'loginSpin 0.7s linear infinite',
-  },
-
-  // Footer
-  footerLinks: {
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    gap: 12,
-    marginTop: 20,
-  },
-  linkBtn: {
-    background: 'transparent',
-    border: 'none',
-    color: 'rgba(255, 255, 255, 0.45)',
-    fontSize: '0.82em',
-    fontWeight: 600,
-    cursor: 'pointer',
-    fontFamily: 'inherit',
-    transition: 'color 0.2s',
-    padding: 0,
-  },
-  dividerDot: {
-    color: 'rgba(255, 255, 255, 0.2)',
-    fontSize: '0.8em',
-  },
-
-  // Trust Badges
-  trustBadges: {
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    gap: 14,
-    marginTop: 18,
-    flexWrap: 'wrap',
-  },
-  badge: {
-    fontSize: '0.68em',
-    color: 'rgba(255, 255, 255, 0.35)',
-    fontWeight: 600,
-    letterSpacing: '0.02em',
-  },
-
-  // Bottom
-  bottomAttrib: {
-    position: 'absolute',
-    bottom: 20,
-    textAlign: 'center',
-    fontSize: '0.75em',
-    color: 'rgba(255, 255, 255, 0.25)',
-    fontWeight: 500,
-  },
-};

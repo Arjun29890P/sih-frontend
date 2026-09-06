@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useLanguage } from '../../context/LanguageContext';
 import { soundEngine } from '../../utils/soundEngine';
-import { Globe, Eye, Volume2, VolumeX, Shield, Sun, Moon, Sparkles, HardDrive, Wifi, WifiOff, X, Check } from 'lucide-react';
+import { Globe, Eye, Volume2, VolumeX, Shield, Sun, Moon, Sparkles, HardDrive, Wifi, WifiOff, X, Check, LogOut } from 'lucide-react';
 
 export default function Header() {
   const {
@@ -19,7 +19,8 @@ export default function Header() {
     setSoundMuted,
     portalMode,
     setPortalMode,
-    isOffline
+    isOffline,
+    logout
   } = useLanguage();
 
   const [showLangModal, setShowLangModal] = useState(false);
@@ -220,6 +221,26 @@ export default function Header() {
             >
               <Shield size={16} />
               {portalMode === 'elder' ? t('switchCaregiver') : t('switchElder')}
+            </button>
+
+            <button
+              className="pill-btn"
+              onClick={() => {
+                soundEngine.playTap();
+                logout();
+              }}
+              title="Sign out of your account"
+              style={{
+                minHeight: 44,
+                padding: '8px 16px',
+                fontSize: '0.85em',
+                borderColor: 'rgba(198, 40, 40, 0.25)',
+                color: 'var(--state-danger)',
+                fontWeight: 700
+              }}
+            >
+              <LogOut size={16} />
+              <span>Logout</span>
             </button>
           </div>
         </div>
