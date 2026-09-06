@@ -5,13 +5,7 @@ import { soundEngine } from '../utils/soundEngine';
 const LanguageContext = createContext();
 
 export function LanguageProvider({ children }) {
-  const [currentLang, setCurrentLang] = useState(() => {
-    const saved = localStorage.getItem('smriti_lang');
-    if (!saved || saved === 'as') {
-      return 'en';
-    }
-    return saved;
-  });
+  const [currentLang, setCurrentLang] = useState('en');
 
   const [fontScale, setFontScale] = useState(() => {
     return parseFloat(localStorage.getItem('smriti_font_scale')) || 1.1; 
