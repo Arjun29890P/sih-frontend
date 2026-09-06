@@ -108,7 +108,7 @@ class VoiceAssistant {
     }
   }
 
-  getAICompanionResponse(query, lang = 'en', patientName = 'Bapu') {
+  getAICompanionResponse(query, lang = 'en', patientName = 'Arjun') {
     const q = (query || '').toLowerCase();
 
     if (q.includes('time') || q.includes('সময়') || q.includes('बजा') || q.includes('मतम')) {

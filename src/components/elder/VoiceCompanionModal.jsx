@@ -33,7 +33,7 @@ export default function VoiceCompanionModal({ onClose }) {
   };
 
   const respondToQuery = (queryText) => {
-    const aiResp = voiceAssistant.getAICompanionResponse(queryText, currentLang, 'Bapu');
+    const aiResp = voiceAssistant.getAICompanionResponse(queryText, currentLang, 'Arjun');
     setCompanionReply(aiResp.text);
     setIsSpeaking(true);
     voiceAssistant.speak(aiResp.text, currentLang);

@@ -84,7 +84,7 @@ export default function SensoryCalming() {
       voiceAssistant.speak('A calm and steady day is a blessing.', currentLang);
     } else if (moodKey === 'confused') {
       soundEngine.playFluteTone(440, 0.8);
-      setSoothingMessage('Do not worry at all, Bapu. You are safe at home. Breathe gently; your loved ones are near.');
+      setSoothingMessage('Do not worry at all, Arjun. You are safe at home. Breathe gently; your loved ones are near.');
       voiceAssistant.speak('Do not worry at all. You are completely safe at home. Take a slow, gentle breath.', currentLang);
     } else if (moodKey === 'anxious') {
       soundEngine.playFluteTone(392, 1.0);
@@ -115,7 +115,7 @@ export default function SensoryCalming() {
       {}
       <div className="elder-card" style={{ marginBottom: 24, textAlign: 'center' }}>
         <h3 style={{ fontSize: '1.3em', fontWeight: 800, color: 'var(--ner-forest-deep)', marginBottom: 12 }}>
-          How is your heart feeling right now, Bapu?
+          How is your heart feeling right now, Arjun?
         </h3>
 
         <div style={{
