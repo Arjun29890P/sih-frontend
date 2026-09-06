@@ -60,7 +60,7 @@ export default function MemoryVaultManager() {
         <div>
           <h2 style={{ fontSize: '1.4em', fontWeight: 800, color: 'var(--ner-forest-deep)', display: 'flex', alignItems: 'center', gap: 10 }}>
             <Heart color="var(--ner-terracotta)" fill="var(--ner-terracotta)" size={24} />
-            Personalized Reminiscence Vault (স্ব-জন স্মৃতি সংৰক্ষণ)
+            Personalized Reminiscence Vault
           </h2>
           <p style={{ color: 'var(--text-secondary)', fontSize: '0.95em', marginTop: 4 }}>
             Photos and memory cards here directly power the elder's "Swa-Jana Familiar Faces" cognitive game.

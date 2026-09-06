@@ -10,7 +10,7 @@ export default function OfflineSyncManager() {
       <div style={{ marginBottom: 24 }}>
         <h2 style={{ fontSize: '1.4em', fontWeight: 800, color: 'var(--ner-forest-deep)', display: 'flex', alignItems: 'center', gap: 10 }}>
           <Database color="var(--ner-teal)" size={24} />
-          Remote NER Offline Sync & Health Post Telemetry (পাহাৰীয়া অফলাইন সংযোগ)
+          Remote NER Offline Sync & Health Post Telemetry
         </h2>
         <p style={{ color: 'var(--text-secondary)', fontSize: '0.95em', marginTop: 4 }}>
           Engineered for rural sub-centers & hilly districts across North East India with intermittent 2G/no connectivity.

@@ -8,7 +8,7 @@ import { ArrowLeft, Clock, CheckCircle2, RotateCcw, Sparkles, Sun, Moon, Sunrise
 const DAILY_ACTIVITIES = [
   {
     order: 1,
-    period: 'Morning (পুৱা)',
+    period: 'Morning',
     icon: '🌅',
     title: 'Morning Assam Tea & Warm Breakfast',
     desc: 'Waking up to birds chirping, sipping hot tea, and greeting the sunrise.',
@@ -17,7 +17,7 @@ const DAILY_ACTIVITIES = [
   },
   {
     order: 2,
-    period: 'Noon (দুপৰীয়া)',
+    period: 'Noon',
     icon: '💊',
     title: 'Midday Meal & Medicine',
     desc: 'Nutritious lunch, drinking clean water, and taking morning prescribed tablet.',
@@ -26,7 +26,7 @@ const DAILY_ACTIVITIES = [
   },
   {
     order: 3,
-    period: 'Late Afternoon (আবেলি)',
+    period: 'Late Afternoon',
     icon: '🌿',
     title: 'Garden Walk & Flower Watering',
     desc: 'Walking softly on the grass, touching orchid petals, and fresh breeze.',
@@ -35,7 +35,7 @@ const DAILY_ACTIVITIES = [
   },
   {
     order: 4,
-    period: 'Night (ৰাতি)',
+    period: 'Night',
     icon: '🌙',
     title: 'Evening Prayer & Gentle Sleep',
     desc: 'Lighting the sacred lamp (Diya), relaxing breathing, and restful slumber.',

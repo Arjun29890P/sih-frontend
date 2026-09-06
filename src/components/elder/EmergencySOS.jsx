@@ -54,7 +54,7 @@ export default function EmergencySOS() {
             }}
           >
             <AlertTriangle size={36} />
-            PRESS FOR IMMEDIATE HELP (জৰুৰী সহায়)
+            PRESS FOR IMMEDIATE HELP
           </button>
 
           <div style={{

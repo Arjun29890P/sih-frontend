@@ -20,28 +20,28 @@ export default function ElderPortal() {
         greeting: t('greetingMorning'),
         icon: '🌅',
         bg: '#FFF8E1',
-        label: 'Morning (পুৱা)'
+        label: 'Morning'
       };
     } else if (hour >= 12 && hour < 17) {
       return {
         greeting: t('greetingAfternoon'),
         icon: '☀️',
         bg: '#FFFDE7',
-        label: 'Afternoon (দুপৰীয়া)'
+        label: 'Afternoon'
       };
     } else if (hour >= 17 && hour < 20) {
       return {
         greeting: t('greetingEvening'),
         icon: '🌇',
         bg: '#FFF3E0',
-        label: 'Evening (সন্ধিয়া)'
+        label: 'Evening'
       };
     } else {
       return {
         greeting: t('greetingNight'),
         icon: '🌙',
         bg: '#EDE7F6',
-        label: 'Night (ৰাতি)'
+        label: 'Night'
       };
     }
   };

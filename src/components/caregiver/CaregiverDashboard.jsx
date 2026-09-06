@@ -43,7 +43,7 @@ export default function CaregiverDashboard() {
             </div>
 
             <h2 style={{ fontSize: '1.8em', fontWeight: 800, marginTop: 6, color: '#FFFFFF' }}>
-              Prahari (প্ৰহৰী) - Caregiver & Clinical Dashboard
+              Prahari - Caregiver & Clinical Dashboard
             </h2>
 
             <div style={{ display: 'flex', gap: 20, flexWrap: 'wrap', marginTop: 8, fontSize: '0.95em', opacity: 0.95 }}>
@@ -103,7 +103,7 @@ export default function CaregiverDashboard() {
           onClick={() => setActiveCareTab('vault')}
         >
           <Heart size={18} />
-          Family Memory Vault (স্ব-জন)
+          Family Memory Vault
         </button>
 
         <button

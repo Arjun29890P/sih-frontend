@@ -288,7 +288,7 @@ export default function Header() {
                 </div>
                 <div>
                   <h3 id="lang-modal-title" style={{ margin: 0, fontSize: '1.25em', color: 'var(--ner-forest-deep)' }}>
-                    Choose Language / ভাষা নিৰ্বাচন
+                    Choose Language
                   </h3>
                   <p style={{ margin: 0, fontSize: '0.85em', color: 'var(--text-muted)' }}>
                     English is default. Tap any option to switch instantly.
